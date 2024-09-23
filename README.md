@@ -4,7 +4,7 @@
 
 Docker镜像地址：
 ```
-tArogoD/nz
+tarogod/nz
 ```
 
 
