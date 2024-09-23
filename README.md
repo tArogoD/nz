@@ -1,3 +1,11 @@
+代码源于F佬，仅固定哪吒面板及哪吒客户端固定在旧版本，具体要哪个版本，可以自己改。
+
+Docker镜像地址：
+```
+tArogoD/nz
+```
+
+
 # Argo-Nezha-Service-Container
 
 使用 Argo 隧道的哪吒服务端
