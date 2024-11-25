@@ -112,7 +112,11 @@ EOF
   aver=${aver:-v0.17.5}
   wget -O /tmp/dashboard.zip ${GH_PROXY}https://github.com/nezhahq/nezha/releases/download/${dver}/dashboard-linux-$ARCH.zip
   unzip /tmp/dashboard.zip -d /tmp
-  mv -f /tmp/dist/dashboard-linux-$ARCH $WORK_DIR/app
+  if [ -d "/tmp/dist" ]; then
+      mv -f /tmp/dist/dashboard-linux-$ARCH $WORK_DIR/app
+  else
+      mv -f /tmp/dashboard-linux-$ARCH $WORK_DIR/app
+  fi
   wget -qO $WORK_DIR/cloudflared ${GH_PROXY}https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$ARCH
   wget -O $WORK_DIR/nezha-agent.zip ${GH_PROXY}https://github.com/nezhahq/agent/releases/download/${aver}/nezha-agent_linux_$ARCH.zip
   unzip $WORK_DIR/nezha-agent.zip -d $WORK_DIR/
