@@ -108,7 +108,7 @@ EOF
   fi
 
   # 下载需要的应用
-  dver=${dver:-v0.17.5}
+  dver=${dver:-v0.17.9}
   aver=${aver:-v0.17.5}
   wget -O /tmp/dashboard.zip ${GH_PROXY}https://github.com/nezhahq/nezha/releases/download/${dver}/dashboard-linux-$ARCH.zip
   unzip /tmp/dashboard.zip -d /tmp
