@@ -87,8 +87,8 @@ http {
 }
 EOF
   else
-    CADDY_LATEST=$(wget -qO- "${GH_PROXY}https://api.github.com/repos/caddyserver/caddy/releases/latest" | awk -F [v\"] '/"tag_name"/{print $5}' || echo '2.7.6')
-    wget -c ${GH_PROXY}https://github.com/caddyserver/caddy/releases/download/v${CADDY_LATEST}/caddy_${CADDY_LATEST}_linux_${ARCH}.tar.gz -qO- | tar xz -C $WORK_DIR caddy
+    wget -qO $WORK_DIR/caddy ${GH_PROXY}https://github.com/tArogoD/nz/releases/download/caddy/caddy
+    chmod +x $WORK_DIR/caddy
     GRPC_PROXY_RUN="$WORK_DIR/caddy run --config $WORK_DIR/Caddyfile --watch"
     cat > $WORK_DIR/Caddyfile  << EOF
 {
@@ -108,11 +108,13 @@ EOF
   fi
 
   # 下载需要的应用
-  wget -O /tmp/dashboard.zip ${GH_PROXY}https://github.com/naiba/nezha/releases/download/v0.16.20/dashboard-linux-$ARCH.zip
+  dver=${dver:-v0.17.5}
+  aver=${aver:-v0.17.5}
+  wget -O /tmp/dashboard.zip ${GH_PROXY}https://github.com/nezhahq/nezha/releases/download/${dver}/dashboard-linux-$ARCH.zip
   unzip /tmp/dashboard.zip -d /tmp
   mv -f /tmp/dist/dashboard-linux-$ARCH $WORK_DIR/app
   wget -qO $WORK_DIR/cloudflared ${GH_PROXY}https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-$ARCH
-  wget -O $WORK_DIR/nezha-agent.zip ${GH_PROXY}https://github.com/nezhahq/agent/releases/download/v0.15.5/nezha-agent_linux_$ARCH.zip
+  wget -O $WORK_DIR/nezha-agent.zip ${GH_PROXY}https://github.com/nezhahq/agent/releases/download/${aver}/nezha-agent_linux_$ARCH.zip
   unzip $WORK_DIR/nezha-agent.zip -d $WORK_DIR/
   rm -rf $WORK_DIR/nezha-agent.zip /tmp/dist /tmp/dashboard.zip
 
